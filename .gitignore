@@ -1,3 +1,6 @@
+# Ignore directories.
+/build
+
 # Ignore script files.
 *.bat
 *.sh
@@ -49,3 +52,6 @@ GPATH
 GRTAGS
 GSYMS
 GTAGS
+
+# null file
+NUL
