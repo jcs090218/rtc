@@ -8,6 +8,11 @@
 # ========================================================================
 
 
+2017-12-12
+* Load cnd file outside the working area. (rtc)
+* Modefied command doc. (rtc)
+* Refactor commands to ope file. (rtc)
+
 2017-12-11
 * First setup repo. (rtc)
 * Add todo list. (rtc)
