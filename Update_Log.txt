@@ -10,3 +10,11 @@
 
 2017-12-11
 * First setup repo. (rtc)
+* Add todo list. (rtc)
+* Add cnd doc. (rtc)
+* Add log. (rtc)
+
+2017-12-03
+* First setup project. (rtc)
+* Add project core. (rtc)
+* Add license. (rtc)
