@@ -25,6 +25,7 @@
 
 /* Defines */
 #include "./include/defines.h"
+#include "./include/ope.h"
 #include "./include/util.h"
 
 #endif /* __RTC_H__ */
