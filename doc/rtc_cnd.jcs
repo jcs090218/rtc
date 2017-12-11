@@ -5,10 +5,12 @@ These are common Rtc commands used in various situations:
 start a working area (see also: rtc help tuttorial)
     init           Create an empty RTC repository or reinitialize an exisiting one
 
-start real-time collaboration (see also: rtc help workflows)
+collaborate (see also: rtc help workflows)
     start_server   Start the RTC server
     connect        Connect to a remote RTC server
-
-end real-time collaboration (see also: rtc help workflows)
     close_server   Close the RTC server
     disconnect     Discomment from a remoste RTC server
+
+examine the history and state (see also: rtc help revisions)
+    log            Show the collab status
+    statue         Show the working status
