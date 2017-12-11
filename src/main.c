@@ -9,75 +9,6 @@
 
 #include "../rtc.h"
 
-/**
- * @func rtc_create_cnd
- * @brief Create command instruction file.
- * @return { int } : error code.
- */
-int rtc_create_cnd(void) {
-    int result = jcs_simple_download_file_from_url(
-        RTC_COMMAND_URL,
-        RTC_COMMAND_OUTPUT);
-    return result;
-}
-
-/**
- * @func rtc_init
- * @brief Initialize the RTC application.
- */
-void rtc_init(void) {
-    bool reinit = jcs_safe_remove_dir_recursive(RTC_INIT_DIR);
-
-    jcs_safe_create_dir(RTC_INIT_DIR, RTC_DIR_MODE);
-
-    char currentDir[PATH_MAX];
-    jcs_get_current_dir(currentDir, sizeof(currentDir));
-
-    if (!reinit) {
-        jcs_println(
-            "Initialize empty RTC repository in %s/.rtc/",
-            currentDir);
-    } else {
-        jcs_println(
-            "Reinitialized existing RTC repository in %s/.rtc/",
-            currentDir);
-    }
-
-    int result = rtc_create_cnd();
-    if (result != JCS_NO_ERROR) {
-        jcs_error("Cannot download the command file..");
-    }
-}
-
-/**
- * @func rtc_print_inc
- * @brief Print command instructions.
- */
-void rtc_print_inc(void) {
-    bool succes = jcs_print_file("./.rtc/rtc_cnd.jcs");
-
-    if (!succes) {
-        /* Download file. */
-        int result = rtc_create_cnd();
-
-        jcs_println("Result: %d", result);
-
-        if (result == JCS_NO_ERROR) {
-            jcs_error("Cannot download the command file.");
-        } else {
-            /* Try print the inc again. */
-            rtc_print_inc();
-        }
-    }
-}
-
-/**
- * @func rtc_print_ver
- * @brief Function description here..
- */
-void rtc_print_ver(void) {
-    jcs_println("rtc version " RTC_MAJOR_VER ".gcc." RTC_MINOR_VER);
-}
 
 /**
  * @func rtc_process_command
@@ -89,7 +20,6 @@ void rtc_process_command(int commandc, char *commands[]) {
     char *first_command;
 
     if (!jcs_is_safe_command(commandc, 1)) {
-        rtc_init();
         rtc_print_inc();
         return;
     }
@@ -102,11 +32,11 @@ void rtc_process_command(int commandc, char *commands[]) {
         rtc_print_ver();
     } else if (jcs_strcmp(first_command, "--help")) {
         rtc_print_inc();
-    }
-    /* Commands that need inittialize before we run it. */
-    else if (jcs_dir_exists(RTC_INIT_DIR)) {
-
-        if (jcs_strcmp(first_command, "start_server")) {
+    } else if (jcs_dir_exists(RTC_INIT_DIR)) {
+        /* Commands that need inittialize before we run it. */
+        if (jcs_strcmp(first_command, "status")) {
+            rtc_status();
+        } else if (jcs_strcmp(first_command, "start_server")) {
             if (!jcs_is_safe_command(commandc, 2) ||
                 !jcs_is_safe_command(commandc, 3)) {
                 jcs_error("start_server should start with"
@@ -129,6 +59,10 @@ void rtc_process_command(int commandc, char *commands[]) {
             int real_port = atoi(port);
 
         } else if (jcs_strcmp(first_command, "close_server")) {
+
+        } else if (jcs_strcmp(first_command, "connect")) {
+
+        } else if (jcs_strcmp(first_command, "disconnect")) {
 
         } else {
             jcs_error("You should initialize init before using RTC serivce..");
