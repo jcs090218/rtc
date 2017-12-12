@@ -20,11 +20,13 @@
 #include <errno.h>
 #include <stdbool.h>
 
+
 /* Libraries */
 #include "./include/libc-jcs/libc_jcs.h"
 
 /* Defines */
 #include "./include/defines.h"
+#include "./include/commands.h"
 #include "./include/ope.h"
 #include "./include/util.h"
 
