@@ -12,6 +12,8 @@
 * Load cnd file outside the working area. (rtc)
 * Modefied command doc. (rtc)
 * Refactor commands to ope file. (rtc)
+* Add more operators/commands. (rtc)
+* command file implemented. (rtc)
 
 2017-12-11
 * First setup repo. (rtc)
