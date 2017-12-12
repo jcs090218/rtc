@@ -6,11 +6,14 @@ start a working area (see also: rtc help tuttorial)
     init           Create an empty RTC repository or reinitialize an exisiting one
 
 collaborate (see also: rtc help workflows)
-    start_server   Start the RTC server
     connect        Connect to a remote RTC server
-    close_server   Close the RTC server
     disconnect     Discomment from a remoste RTC server
+    start_server   Start the RTC server
 
 examine the history and state (see also: rtc help revisions)
     log            Show the collab status
     statue         Show the working status
+
+server command (see also: rtc server workflows)
+    close_server   Close the RTC server
+    exit           Close the RTC server
