@@ -26,44 +26,22 @@ void rtc_process_command(int commandc, char *commands[]) {
 
     first_command = commands[1];
 
-    if (jcs_strcmp(first_command, "init")) {
+    if (jcs_strcmp(first_command, RTC_CMD_INIT)) {
         rtc_init();
-    } else if (jcs_strcmp(first_command, "--version")) {
+    } else if (jcs_strcmp(first_command, RTC_CMD_VERSION_CHECK)) {
         rtc_print_ver();
-    } else if (jcs_strcmp(first_command, "--help")) {
+    } else if (jcs_strcmp(first_command, RTC_CMD_HELP)) {
         rtc_print_inc();
     } else if (jcs_dir_exists(RTC_INIT_DIR)) {
         /* Commands that need inittialize before we run it. */
-        if (jcs_strcmp(first_command, "status")) {
+        if (jcs_strcmp(first_command, RTC_CMD_STATUS)) {
             rtc_status();
-        } else if (jcs_strcmp(first_command, "start_server")) {
-            if (!jcs_is_safe_command(commandc, 2) ||
-                !jcs_is_safe_command(commandc, 3)) {
-                jcs_error("start_server should start with"
-                          "%hostname% and %port%.");
-                return;
-            }
-
-            char *hostname = commands[2];
-            char *port = commands[3];
-
-            jcs_println("Starting server...");
-            jcs_println("Hostanem: %s", hostname);
-            jcs_println("Port: %s", port);
-
-            if (!jcs_is_valid_ip_address(hostname)) {
-                jcs_error("Invalid IP/Hostname..");
-                return;
-            }
-
-            int real_port = atoi(port);
-
-        } else if (jcs_strcmp(first_command, "close_server")) {
-
-        } else if (jcs_strcmp(first_command, "connect")) {
-
-        } else if (jcs_strcmp(first_command, "disconnect")) {
-
+        } else if (jcs_strcmp(first_command, RTC_CMD_START_SERVER)) {
+            rtc_start_server(commandc, commands);
+        } else if (jcs_strcmp(first_command, RTC_CMD_CONNECT)) {
+            rtc_connect(commandc, commands);
+        } else if (jcs_strcmp(first_command, RTC_CMD_DISCONNECT)) {
+            rtc_disconnect();
         } else {
             jcs_error("You should initialize init before using RTC serivce..");
         }
