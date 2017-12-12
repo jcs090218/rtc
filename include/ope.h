@@ -34,4 +34,26 @@ void rtc_print_ver(void);
  */
 void rtc_status(void);
 
+/**
+ * @func rtc_start_server
+ * @brief Start RTC server.
+ * @param { int } commandc : command count.
+ * @param { char } commands : command vector.
+ */
+void rtc_start_server(int commandc, char *commands[]);
+
+/**
+ * @func rtc_connect
+ * @brief Connect to a RTC server.
+ * @param { int } commandc : command count.
+ * @param { char } commands : command vector.
+ */
+void rtc_connect(int commandc, char *commands[]);
+
+/**
+ * @func rtc_disconnect
+ * @brief Disconnect from the RTC server.
+ */
+void rtc_disconnect(void);
+
 #endif /* __OPE_H__ */
