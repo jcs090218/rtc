@@ -20,6 +20,9 @@
 #define RTC_COMMAND_URL "http://www.jcs-profile.com/public/rtc/rtc_cnd.jcs"
 #define RTC_COMMAND_OUTPUT "./.rtc/rtc_cnd.jcs"
 
+#define RTC_MAX_CONN 30
+
+
 /**
  * @def RTC_FILE_MODE
  * @brief File mode number when create file.
