@@ -103,7 +103,7 @@ void rtc_status(void) {
  */
 void rtc_start_server(int commandc, char *commands[]) {
     if (!jcs_is_safe_command(commandc, 2)) {
-        jcs_error("start_server should start with and 'port'.");
+        jcs_error("start_server should start with 'port'.");
         return;
     }
 
@@ -142,7 +142,22 @@ void rtc_start_server(int commandc, char *commands[]) {
  * @param { char } commands : command vector.
  */
 void rtc_connect(int commandc, char *commands[]) {
+    if (!jcs_is_safe_command(commandc, 2) ||
+        !jcs_is_safe_command(commandc, 3)) {
+        jcs_error("start_server should start with 'hostname' and 'port'.");
+        return;
+    }
 
+    char* hostname = commands[2];
+    char *port = commands[3];
+
+    jcs_println("Starting server...");
+    jcs_println("Port: %s", port);
+
+
+    int real_port = atoi(port);
+
+    int client_fd = jcs_create_client(hostname, real_port);
 }
 
 /**
