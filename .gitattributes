@@ -1,12 +1,8 @@
-# ========================================================================
-# $File: .gitattributes $
-# $Date: 2017-12-03 12:15:37 $
-# $Revision: $
-# $Creator: Jen-Chieh Shen $
-# $Notice: See LICENSE.txt for modification and distribution information
-#                   Copyright © 2017 by Shen, Jen-Chieh $
-# ========================================================================
-
+# Autodetect text files
+* text=auto
 
 *.c diff=cpp
 *.h diff=cpp
+
+# Unix-like line endings
+*.sh text eol=lf
